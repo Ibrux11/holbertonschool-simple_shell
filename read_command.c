@@ -16,6 +16,8 @@ char *read_command(void)
     ssize_t bytes_read;
     char *buffer = NULL;
      
+    prompt();
+    
     bytes_read = getline(&buffer, &buffer_size, stdin);
     if (bytes_read == -1)
     {
