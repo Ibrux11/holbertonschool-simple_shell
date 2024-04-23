@@ -1,18 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys/wait.h>
+#include <errno.h>
+#include "shell.h"
 
-
-
-#define PROMPT "@cisfun$"
-
+/**
+ * main - Entry point of the shell program
+ * Return: Always 0
+ */
 int main(void)
-    char *buffer;
-    int buffer_size = 1024;
-    buffer = ((char *)malloc(buffer_size * size_of(char))); 
-    char*input;
-    int status;
-
-while(1)
 {
-    printf(PROMPT);
-    input=
+    char *command;
+
+    while (1)
+    {
+        prompt();
+        command = read_command();
+        if (strcmp(command, "exit") == 0)
+        {
+            free(command);
+            break;
+        }
+        execute_command(command);
+        free(command);
+    }
+
+    return 0;
 }
-free(buffer);
