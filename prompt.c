@@ -11,5 +11,5 @@
 prompt - Display the shell prompt*/
 void prompt(void)
 {
-    printf("($) ");
+    printf("#cisfun$ ");
 }

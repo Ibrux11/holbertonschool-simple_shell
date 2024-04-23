@@ -12,27 +12,32 @@
  */
 void execute_command(char *command)
 {
-    char *args[2];
+    char **args;
+    int arg_count = 0;
     pid_t pid;
     int status;
+    char *token;
 
-    if (strcmp(command, "cd") == 0)
+    args = malloc(sizeof(char*) * 64);
+    if (args == NULL)
     {
-        char *home_dir = getenv("HOME");
-        if (home_dir == NULL)
-        {
-            fprintf(stderr, "cd: No HOME environment variable\n");
-            return;
-        }
-        if (chdir(home_dir) != 0)
-        {
-            perror("cd");
-        }
-        return;
+        perror("malloc");
+        exit(EXIT_FAILURE);
     }
 
-    args[0] = command;
-    args[1] = NULL;
+    token = strtok(command, " ");
+    while (token != NULL)
+    {
+        args[arg_count++] = token;
+        token = strtok(NULL, " ");
+    }
+    args[arg_count] = NULL;
+
+    if (strcmp(args[0], "cd") == 0)
+    {
+        free(args);
+        return;
+    }
 
     pid = fork();
     if (pid == -1)
@@ -42,9 +47,9 @@ void execute_command(char *command)
     }
     if (pid == 0)
     {
-        if (execve(command, args, NULL) == -1)
+        if (execvp(args[0], args) == -1)
         {
-            perror(command);
+            perror(args[0]);
             exit(EXIT_FAILURE);
         }
     }
@@ -59,4 +64,6 @@ void execute_command(char *command)
             }
         } while (!WIFEXITED(status) && !WIFSIGNALED(status));
     }
+
+    free(args);
 }
