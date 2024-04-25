@@ -16,7 +16,6 @@ int main(void)
 
     while (1)
     {
-        prompt();
         command = read_command();
         if (strcmp(command, "exit") == 0)
         {

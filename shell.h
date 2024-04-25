@@ -10,7 +10,6 @@
 
 void execute_command(char *command);
 char *read_command(void);
-void prompt(void);
 int main(void);
 
 #endif

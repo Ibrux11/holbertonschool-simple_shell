@@ -16,16 +16,19 @@ char *read_command(void)
     ssize_t bytes_read;
     char *buffer = NULL;
     
+    if (isatty(fileno(stdin))) {
+        printf("#cisfun$ ");
+        fflush(stdout);
+    }
+
     bytes_read = getline(&buffer, &buffer_size, stdin);
     if (bytes_read == -1)
     {
-        if (feof(stdin))
-        {
+        if (isatty(fileno(stdin))) {
             printf("\n");
-            exit(EXIT_SUCCESS);
         }
-   
-        exit(EXIT_FAILURE);
+        free(buffer);
+        exit(EXIT_SUCCESS);
     }
     
     if (bytes_read > 0 && buffer[bytes_read - 1] == '\n')

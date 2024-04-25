@@ -12,11 +12,17 @@
  */
 void execute_command(char *command)
 {
+    const char *new_path = "/bin/ls";
     char **args;
     int arg_count = 0;
     pid_t pid;
     int status;
     char *token;
+
+    if (setenv("PATH", new_path, 1) == -1) {
+        perror("setenv");
+        exit(EXIT_FAILURE);
+    }
 
     args = malloc(sizeof(char*) * 64);
     if (args == NULL)
@@ -33,12 +39,12 @@ void execute_command(char *command)
     }
     args[arg_count] = NULL;
 
-    if (strcmp(args[0], "cd") == 0)
+    if (strcmp(args[0], "ls") == 0)
     {
         free(args);
         return;
     }
-
+    
     pid = fork();
     if (pid == -1)
     {
@@ -47,9 +53,10 @@ void execute_command(char *command)
     }
     if (pid == 0)
     {
-        if (execvp(args[0], args) == -1)
-        {
-            perror(args[0]);
+        if (execve(args[0], args, NULL) == -1) {
+            if (isatty(STDERR_FILENO)) {
+                fprintf(stderr, "%s: command not found\n", args[0]);
+            }
             exit(EXIT_FAILURE);
         }
     }
