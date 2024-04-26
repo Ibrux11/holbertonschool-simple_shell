@@ -10,7 +10,6 @@
 #include <sys/stat.h>
 #include <errno.h>
 
-
 int lsh_ctrld(char **args);
 int lsh_cd(char **args);
 int lsh_help(char **args);
@@ -29,8 +28,6 @@ char *_getline_command(void);
 void _getenv(char **env);
 char **tokenize(char *lineptr);
 void _exit_command(char **args, char *lineptr, int _exit);
-int _fork_fun(char **arg, char **av, char **env,
-char *lineptr, int np, int c);
-
+int _fork_fun(char **arg, char **av, char **env, char *lineptr, int np, int c);
 
 #endif /* SHELL_H */

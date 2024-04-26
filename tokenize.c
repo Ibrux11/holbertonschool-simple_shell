@@ -1,10 +1,10 @@
 #include "shell.h"
-/**
- * tokenize - tokenizes a stirng
- * @lineptr: what the user inputed
- * Return: a ptr to arr of ptrs
- */
 
+/**
+ * tokenize - Tokenizes a string
+ * @lineptr: The user input
+ * Return: A pointer to an array of pointers
+ */
 char **tokenize(char *lineptr)
 {
 	char **user_command = NULL;

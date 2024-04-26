@@ -1,113 +1,105 @@
 #include "shell.h"
 
 /**
- * _strcat - ncatenates two strings
- *
+ * _strcat - Concatenates two strings
  * @dest: Destination string
+ * @src: Source string
  *
- * @src: Origin string
- * Return: Always 0
+ * Return: Pointer to the resulting string
  */
-
-
-
 char *_strcat(char *dest, char *src)
 {
-	int i, j = 0;
+	int i, j;
 
 	for (i = 0; dest[i] != '\0'; i++)
 	{
 	}
+
 	for (j = 0; src[j] != '\0'; j++)
 	{
 		dest[i] = src[j];
 		i++;
-
 	}
 	dest[i] = '\0';
-return (dest);
+
+	return (dest);
 }
-
-
 
 /**
  * _strcmp - Compares two strings
+ * @s1: First string
+ * @s2: Second string
  *
- * @s1: a string
- * @s2: Another string
- *
- * Return: multiple returns
- *
+ * Return: Integer value representing the comparison result
  */
-
 int _strcmp(char *s1, char *s2)
 {
-	int i = 0;
-	int val;
+	int i = 0, val;
 
-	while (s1[i] != 0 && s2[i] != 0 && s1[i] == s2[i])
+	while (s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i])
+	{
 		i++;
-val = s1[i] - s2[i];
-return (val);
+	}
+	val = s1[i] - s2[i];
 
+	return (val);
 }
 
 /**
- * _strlen - gets the size of a string
- * @s: the string to measure
- * Return: the length of the string
+ * _strlen - Calculates the length of a string
+ * @s: Input string
+ *
+ * Return: Length of the string
  */
-
 int _strlen(char *s)
 {
 	int i;
 
-	for (i = 0; s[i] != 0; i++)
+	for (i = 0; s[i] != '\0'; i++)
 		;
 
 	return (i);
 }
 
 /**
- *_strncmp -  function that compares two strings.
- *@s1: string one
- *@s2: string two
- *@n: number of characters
- * Return: diference
+ * _strncmp - Compares two strings up to a given number of characters
+ * @s1: First string
+ * @s2: Second string
+ * @n: Number of characters to compare
+ *
+ * Return: Difference between the first differing characters
  */
-
 size_t _strncmp(char *s1, char *s2, size_t n)
 {
-	size_t i, j;
+	size_t i;
 
-	for (j = 0; s1[j] != '\0' && j < n; j++)
+	for (i = 0; s1[i] != '\0' && i < n; i++)
 	{
-		i = s1[j] - s2[j];
-
-		if (i != 0)
+		if (s1[i] != s2[i])
 		{
-			return (i);
+			return (s1[i] - s2[i]);
 		}
 	}
+
 	return (0);
 }
 
 /**
- * _strcpy - copies the string pointed to by src into dest
- * @dest: destination of the copy
- * @src: source of the copy
+ * _strcpy - Copies a string from source to destination
+ * @dest: Destination string
+ * @src: Source string
  *
- * Return: char pointer to dest
+ * Return: Pointer to the destination string
  */
-
 char *_strcpy(char *dest, char *src)
 {
-	int i = 0;
+	int i;
 
 	for (i = 0; src[i] != '\0'; i++)
 	{
 		dest[i] = src[i];
 	}
-	dest[i + 1] = 0;
+	dest[i] = '\0';
+
 	return (dest);
 }

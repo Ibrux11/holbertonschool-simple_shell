@@ -1,8 +1,4 @@
 #include "shell.h"
-int lsh_cd(char **args);
-int lsh_help(char **args);
-int lsh_exit(char **args);
-int lsh_ctrld(char **args);
 
 /*
  * List of builtin commands, followed by their corresponding functions.
@@ -12,10 +8,10 @@ char *builtin_str[] = {"cd", "help", "exit", "^D"};
 int (*builtin_func[]) (char **) = {&lsh_cd, &lsh_help, &lsh_exit, &lsh_ctrld};
 
 /**
- * lsh_num_builtins - size
- * Return: size
+ * lsh_num_builtins - Get the number of built-in commands
+ *
+ * Return: The number of built-in commands
  */
-
 int lsh_num_builtins(void)
 {
 	return (sizeof(builtin_str) / sizeof(char *));
@@ -23,11 +19,11 @@ int lsh_num_builtins(void)
 
 /*
  * Builtin function implementations.
-*/
+ */
 
 /**
- * lsh_cd - builtin to change dirs
- * @args: List of args.  args[0] is "cd".  args[1] is the directory.
+ * lsh_cd - Change directory
+ * @args: List of arguments. args[0] is "cd". args[1] is the directory.
  * Return: 1 on success
  */
 int lsh_cd(char **args)
@@ -47,8 +43,8 @@ int lsh_cd(char **args)
 }
 
 /**
- * lsh_help - prints the help for the shell
- * @args: List of args.  Not examined.
+ * lsh_help - Display help information
+ * @args: List of arguments. Not used.
  * Return: Always returns 1, to continue executing.
  */
 int lsh_help(char **args)
@@ -67,43 +63,39 @@ int lsh_help(char **args)
 }
 
 /**
- * lsh_exit - builtin to exit the shell
- * @args: List of args.  Not examined.
- * Return: Always returns 0, to terminate execution.
+ * lsh_exit - Exit the shell
+ * @args: List of arguments. Not used.
+ * Return: Always returns 200, to terminate execution.
  */
 int lsh_exit(char **args)
 {
 	(void)args;
-	free(args);
 	return (200);
 }
 
 /**
- * lsh_ctrld - builtin to handle "^D" call
- * @args: List of args.  Not examined.
- * Return: Always returns 0, to terminate execution.
+ * lsh_ctrld - Handle "^D" call
+ * @args: List of arguments. Not used.
+ * Return: Always returns 200, to terminate execution.
  */
 int lsh_ctrld(char **args)
 {
 	(void)args;
-	free(args);
 	return (200);
 }
 
 /**
- *_fork_fun - foo that create a fork.
- *@arg: Command and values path.
- *@av: Has the name of our program.
- *@env: Environment
- *@lineptr: Command line for the user.
- *@np: ID of proces.
- *@c: Checker add new test
- *Return: 0 success
+ * _fork_fun - Create a fork
+ * @arg: Command and values path
+ * @av: Has the name of our program
+ * @env: Environment
+ * @lineptr: Command line for the user
+ * @np: ID of process
+ * @c: Checker add new test
+ * Return: 0 on success
  */
-
 int _fork_fun(char **arg, char **av, char **env, char *lineptr, int np, int c)
 {
-
 	pid_t child;
 	int status, i = 0;
 	char *format = "%s: %d: %s: not found\n";
