@@ -1,0 +1,62 @@
+SIMPLE_SHELL(1)                      User Commands                     SIMPLE_SHELL(1)
+
+NAME
+       Simple Shell - A simple shell program
+
+SYNOPSIS
+       Simple Shell
+
+DESCRIPTION
+       Simple Shell is a simple shell program that allows users to execute commands
+       and interact with the system. It provides basic functionality such as
+       executing built-in commands, changing directories, and displaying help
+       information.
+
+FUNCTIONS
+       The program is divided into several source files, each containing
+       specific functions:
+
+       - execute.c:
+         * lsh_cd(): Change directory.
+         * lsh_help(): Display help information.
+         * lsh_exit(): Exit the shell.
+         * lsh_ctrld(): Handle the "^D" call.
+         * _fork_fun(): Create a fork.
+
+       - getenv.c:
+         * _getenv(): Prints environment variables to standard output.
+
+       - getline.c:
+         * _getline_command(): Get user input.
+
+       - getpath.c:
+         * _get_path(): Get the value of the PATH variable.
+
+       - shell.c:
+         * main(): Entry point for the shell.
+
+       - tokenize.c:
+         * tokenize(): Tokenize user input.
+
+       - values.c:
+         * _values_path(): Separate the PATH into new strings.
+
+HEADER FILES
+       The shell program uses the following header files:
+
+       - shell.h: Defines function prototypes and includes necessary
+         standard library headers.
+
+GLOBAL VARIABLES
+       - extern char **environ: External array of environment variables.
+
+SEE ALSO
+       execve(2), fork(2), strtok(3), getline(3), chdir(2), stat(2)
+
+AUTHORS
+       Ibrahim Hassan Ali and Esteban Guillen
+
+COPYRIGHT
+       This is free software: you are free to change and redistribute it.
+       There is NO WARRANTY, to the extent permitted by law.
+

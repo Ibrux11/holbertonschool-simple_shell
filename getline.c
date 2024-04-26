@@ -1,17 +1,24 @@
 #include "shell.h"
 
 /**
- * _getenv - Prints environment to standard output
- * @env: Environment
+ * _getline_command - Get user input from standard input
+ *
+ * Return: On success, returns a pointer to the input line.
+ *         On failure, returns NULL.
  */
-void _getenv(char **env)
+char *_getline_command(void)
 {
-	size_t run = 0;
+	char *lineptr = NULL;
+	size_t charter_user = 0;
 
-	while (env[run])
+	if (isatty(STDIN_FILENO))
+		write(STDOUT_FILENO, "$ ", 2);
+
+	if (getline(&lineptr, &charter_user, stdin) == -1)
 	{
-		write(STDOUT_FILENO, env[run], _strlen(env[run]));
-		write(STDOUT_FILENO, "\n", 1);
-		run++;
+		free(lineptr);
+		return (NULL);
 	}
+
+	return (lineptr);
 }
