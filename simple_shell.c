@@ -4,7 +4,7 @@
  * return: return 0 if sucess
 */
 
-int main()
+int main(void)
 {
 int status = 0, num, i;
 char **stoken, *buffer;
@@ -28,7 +28,7 @@ if (strcmp(buffer, "exit") == 0)
 {
 free(buffer);
 break;
-} 
+}
 stoken = tokenize(buffer, &num);
 
 if (num > 0)

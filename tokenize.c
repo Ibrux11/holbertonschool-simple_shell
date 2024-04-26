@@ -18,7 +18,7 @@ if (buffercpy == NULL)
 return (NULL);
 }
 
-stoken = malloc (MAX_ARGS * sizeof(char *));
+stoken = malloc(MAX_ARGS * sizeof(char *));
 
 if (stoken == NULL)
 {

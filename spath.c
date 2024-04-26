@@ -9,11 +9,11 @@ if (path == NULL || *path == '\0')
 {
 if (access(excommand, X_OK) == 0)
 {
-return excommand;
+return (excommand);
 }
 else
 {
-return NULL;
+return (NULL);
 }
 }
 
@@ -21,7 +21,7 @@ pathcpy = strdup(path);
 
 if (pathcpy == NULL)
 {
-return NULL;
+return (NULL);
 }
 
 delim = strtok(pathcpy, ":");
@@ -33,7 +33,7 @@ rute = malloc(len);
 if (rute == NULL)
 {
 free(pathcpy);
-return NULL;
+return (NULL);
 }
 
 sprintf(rute, "%s/%s", delim, excommand);
@@ -41,7 +41,7 @@ sprintf(rute, "%s/%s", delim, excommand);
 if (access(rute, X_OK) == 0)
 {
 free(pathcpy);
-return rute;
+return (rute);
 }
 
 free(rute);
@@ -49,5 +49,5 @@ delim = strtok(NULL, ":");
 }
 
 free(pathcpy);
-return excommand;
+return (excommand);
 }

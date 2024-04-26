@@ -20,6 +20,6 @@ char *readInput();
 char **tokenize(char *uinput, int *count);
 int exeCommand(char **stoken);
 char *spath(char *excommand);
-void checkfunc();
+void checkfunc(void);
 
 #endif
