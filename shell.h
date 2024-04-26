@@ -1,15 +1,25 @@
-#ifndef _SHELL_H_
-#define _SHELL_H_
+#ifndef MAIN_H
+#define MAIN_H
+
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
+#include <stdarg.h>
 #include <string.h>
+#include <unistd.h>
+#include <sys/types.h>
 #include <sys/wait.h>
-#include <errno.h>
+#include <sys/stat.h>
 
-void execute_command(char *command);
-char *read_command(void);
-int main(void);
+extern char **environ;
+
+#define MAX_ARGS 1024
+
+
+char *readInput();
+char **tokenize(char *uinput, int *count);
+int exeCommand(char **stoken);
+char *spath(char *excommand);
+void checkfunc();
 
 #endif
